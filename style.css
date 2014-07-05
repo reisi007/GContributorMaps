@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#map-canvas {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 75%;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.flex-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: stretch;
+}
+
+#toc {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 25%;
+    max-width: 200px;
+    padding: 5px;
+}
+
+#gpopup {
+    min-height: 100px;
+    min-width: 200px;
+}
+
+#desc {
+    font-size: medium;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
