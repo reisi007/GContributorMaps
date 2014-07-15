@@ -6,9 +6,11 @@
  	 <link rel="stylesheet" type="text/css" href="style.css">
  	 <link rel="stylesheet" type="text/css" href="leaflet.css">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="logic.js">  </script>
-        <script src="data.js"></script>
     <script src="leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="logic.js">  </script>
+   
+    
 </head>
 <body>
     <span class="flex-container">

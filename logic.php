@@ -20,14 +20,19 @@ foreach($js as $v)
 	echo("$v: document.getElementsByName(\"$v\")[0],\n")
 ?>
     };
-    //Get map options
+    /*//Get map options
     var mapOptions = {
         zoom: 6,
         center: new google.maps.LatLng(50.2612094, 10.962695)
     };
     //Make map
     map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+        mapOptions);*/
+       map = L.map('map-canvas').setView([50.2612094, 10.962695],6);
+       L.tileLayer('https://a.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18
+}).addTo(map);
     //Create geocoder
     geocoder = new google.maps.Geocoder();
     //Create markers
@@ -45,19 +50,9 @@ foreach($js as $v)
         	
         ?>
         html.push("</ul></div></div>");
-        var infowindow = new google.maps.InfoWindow({
-            content: html.join("")
-        });
         geocoder.geocode({ address: entry.location }, function (result, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                var marker = new google.maps.Marker({
-                    position: result[0].geometry.location,
-                    map: map,
-                    title: entry.name
-                });
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
+            if (status == google.maps.GeocoderStatus.OK){
+				var marker = L.marker([result[0].geometry.location.lat(),result[0].geometry.location.lng()]).addTo(map).bindPopup(html.join(""));
                 markerArray.push(marker);
                 skillArray.push(skills);
             } else {
@@ -99,9 +94,9 @@ function isThisShown(skills) {
 function updateMarkers() {
     for (var i = 0; i < markerArray.length; i++) {
         if (isThisShown(skillArray[i]))
-            markerArray[i].setMap(map);
+            map.addLayer(markerArray[i])
         else
-            markerArray[i].setMap(null);
+             map.removeLayer(markerArray[i])
     }
 }
 google.maps.event.addDomListener(window, 'load', initialize);
