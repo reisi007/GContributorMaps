@@ -5,8 +5,8 @@ html, body {
 }
 
 #map-canvas {
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex-grow: 10;
+    flex-shrink: 10;
     flex-basis: 75%;
 }
 
@@ -21,7 +21,7 @@ h1, h2 {
     justify-content: center;
     align-content: stretch;
 }
-
+   
 #toc {
     flex-grow: 1;
     flex-shrink: 1;
